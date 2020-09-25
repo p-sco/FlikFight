@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour
+public class PlayerAttack : MonoBehaviour
 {
     public float damage;
     public float baseKB;
@@ -24,7 +24,7 @@ public class Attack : MonoBehaviour
                 direction = direction.normalized;
             }
 
-            other.gameObject.GetComponent<PlayerController>().Knockback(direction, baseKB, KBGrowth, damage);
+            other.gameObject.GetComponent<PlayerCollisionScript>().Knockback(direction, baseKB, KBGrowth, damage);
         }
     }
 }
