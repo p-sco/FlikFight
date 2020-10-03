@@ -151,29 +151,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828ee592d2c698941af819ddd45f00df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHealth: 999.9
+  Lives: 3
+  Health: 0
+  PlayerColor: {r: 0, g: 0, b: 0, a: 0}
   _inputScript: {fileID: 6895952054806534940}
   _collisionScript: {fileID: 1404893780748579602}
   _movementScript: {fileID: 1695470963423834788}
-  maxHealth: 999.9
-  lives: 3
-  health: 0
-  playerColor: {r: 0, g: 0, b: 0, a: 0}
-  moveSpeed: 12
-  jumpForce: 15
-  attackSpeed: 0
-  spikeDamage: 10
-  swipeDamage: 8
-  weight: 0
-  fastFallSpeed: 10
-  isKnocked: 0
-  groundCheckPoint: {fileID: 1616113021608989105}
-  groundCheckRadius: 2
-  whatIsGround:
+  _moveSpeed: 12
+  _jumpForce: 15
+  _attackSpeed: 0
+  _spikeDamage: 10
+  _swipeDamage: 8
+  _weight: 0
+  _fastFallSpeed: 10
+  _groundCheckPoint: {fileID: 1616113021608989105}
+  _groundCheckRadius: 2
+  _isGrounded: 0
+  _whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
-  anim: {fileID: 7122087210392581309}
-  isAttacking: 0
-  invincibilityTimer: 0
 --- !u!114 &1404893780748579602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerScript: {fileID: 8712560867118948639}
+  tapTimeThreshold: 0.5
 --- !u!95 &7122087210392581309
 Animator:
   serializedVersion: 3

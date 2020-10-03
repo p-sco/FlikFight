@@ -537,16 +537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a52eeca02761f45b9e51e368d9f700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftStartingPoint: {x: 0, y: 0}
-  RightStartingPoint: {x: 0, y: 0}
-  leftTouch: 99
-  rightTouch: 99
-  timeTouchBegan: []
-  touchDidMove: []
-  tapTimeThreshold: 0.25
-  swipeDistanceY: 0
-  swipeDistanceX: 0
-  minDistanceForSwipe: 1
 --- !u!4 &185071625
 Transform:
   m_ObjectHideFlags: 0
@@ -1297,13 +1287,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f288ec81388c742b8f805524d249a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 475058611}
-  livesImgs:
+  HealthText: {fileID: 475058611}
+  LivesImgs:
   - {fileID: 1487857404}
   - {fileID: 169882032}
   - {fileID: 874333082}
-  playerName: Player2
-  lives: 0
+  PlayerName: Player2
+  Lives: 0
 --- !u!1 &624333894
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,7 +2069,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 911700939}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00070667267, y: 0, z: 0}
+  m_LocalPosition: {x: 0.000005722046, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 624333896}
@@ -2500,7 +2490,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212885283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.021022797, y: 0.47933206, z: -10}
+  m_LocalPosition: {x: -0.022424698, y: 0.47933206, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2577,7 +2567,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248115595}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00021200183, y: 0, z: 0}
+  m_LocalPosition: {x: 0.0000017166374, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 624333896}
@@ -2759,13 +2749,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f288ec81388c742b8f805524d249a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 1814610993}
-  livesImgs:
+  HealthText: {fileID: 1814610993}
+  LivesImgs:
   - {fileID: 1829574145}
   - {fileID: 319786759}
   - {fileID: 804584766}
-  playerName: Player1
-  lives: 0
+  PlayerName: Player1
+  Lives: 0
 --- !u!1 &1364381137
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,7 +3431,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641585764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.021022797, y: 0.47933206, z: -10}
+  m_LocalPosition: {x: -0.022424698, y: 0.47933206, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 378376752}
@@ -3965,7 +3955,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928985820}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00042400367, y: 0, z: 0}
+  m_LocalPosition: {x: 0.0000034332747, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 624333896}
@@ -4113,7 +4103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070715186}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00021200183, y: 0, z: 0}
+  m_LocalPosition: {x: 0.0000017166374, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 624333896}
