@@ -6,44 +6,43 @@ using UnityEngine.UI;
 
 public class GameHUD : MonoBehaviour
 {
-    public TextMeshProUGUI healthText;
-    public Image[] livesImgs; //0-2, left-right
-    public string playerName;
-    public int lives;
+    public TextMeshProUGUI HealthText;
+    public Image[] LivesImgs; //0-2, left-right
+    public string PlayerName;
+    public int Lives;
 
     void Update()
     {
-        healthText.text = GameObject.Find(playerName).GetComponent<PlayerController>().health.ToString() + "%";
-        
+        HealthText.text = GameObject.Find(PlayerName).GetComponent<PlayerController>().Health.ToString() + "%";
     }
 
     public void LiveCount() {
-        if (playerName == "Player1") {
-            lives = GameMaster.P1LifeCount;
-        } else if (playerName == "Player2") {
-            lives = GameMaster.P2LifeCount;
+        if (PlayerName == "Player1") {
+            Lives = GameMaster.P1LifeCount;
+        } else if (PlayerName == "Player2") {
+            Lives = GameMaster.P2LifeCount;
         }
 
-        switch (lives) {
+        switch (Lives) {
             case 3:
-                foreach (Image img in livesImgs) {
+                foreach (Image img in LivesImgs) {
                     img.gameObject.SetActive(true);
                 }
                 break;
             case 2:
-                livesImgs[0].gameObject.SetActive(true);
-                livesImgs[1].gameObject.SetActive(true);
-                livesImgs[2].gameObject.SetActive(false);
+                LivesImgs[0].gameObject.SetActive(true);
+                LivesImgs[1].gameObject.SetActive(true);
+                LivesImgs[2].gameObject.SetActive(false);
                 break;
             case 1:
-                livesImgs[0].gameObject.SetActive(true);
-                livesImgs[1].gameObject.SetActive(false);
-                livesImgs[2].gameObject.SetActive(false);
+                LivesImgs[0].gameObject.SetActive(true);
+                LivesImgs[1].gameObject.SetActive(false);
+                LivesImgs[2].gameObject.SetActive(false);
                 break;
             case 0:
-                livesImgs[0].gameObject.SetActive(false);
-                livesImgs[1].gameObject.SetActive(false);
-                livesImgs[2].gameObject.SetActive(false);
+                LivesImgs[0].gameObject.SetActive(false);
+                LivesImgs[1].gameObject.SetActive(false);
+                LivesImgs[2].gameObject.SetActive(false);
                 break;
         }
     }

@@ -104,12 +104,12 @@ public class GameMaster : MonoBehaviour {
         yield return new WaitForSeconds(spawnDelay);
         if(player == "Player1") {
             player1Prefab.transform.position = p1SpawnPoint.position;
-            player1Prefab.GetComponent<SpriteRenderer>().material.SetColor("_Color", player1Prefab.GetComponent<PlayerController>().playerColor);
+            player1Prefab.GetComponent<SpriteRenderer>().material.SetColor("_Color", player1Prefab.GetComponent<PlayerController>().PlayerColor);
             player1Prefab.SetActive(true);
             player1Prefab.GetComponent<PlayerController>().OnRespawn();
         } else if (player == "Player2") {
             player2Prefab.transform.position = p2SpawnPoint.position;
-            player2Prefab.GetComponent<SpriteRenderer>().material.SetColor("_Color", player2Prefab.GetComponent<PlayerController>().playerColor);
+            player2Prefab.GetComponent<SpriteRenderer>().material.SetColor("_Color", player2Prefab.GetComponent<PlayerController>().PlayerColor);
             player2Prefab.SetActive(true);
             player2Prefab.GetComponent<PlayerController>().OnRespawn();
         }

@@ -17,106 +17,112 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _playerScript.anim.SetFloat("Velocity.x", Mathf.Abs(_playerScript.rb.velocity.x));
-        _playerScript.anim.SetBool("IsInHitstun", _playerScript.isInHitstun);
-        _playerScript.anim.SetBool("Grounded", _playerScript.isGrounded);
+        //_playerScript.anim.SetFloat("Velocity.x", Mathf.Abs(_playerScript.rb.velocity.x));
+        //_playerScript.anim.SetBool("IsInHitstun", _playerScript.isInHitstun);
+        //_playerScript.anim.SetBool("Grounded", _playerScript.isGrounded);
 
-        if (_playerScript.isGrounded)
+        if (_playerScript._isGrounded)
         {
-            _playerScript.canDoubleJump = true;
+            _playerScript._canDoubleJump = true;
         }
-        if (_playerScript.dir == SwipeDirection.Up)
+        if (_playerScript.Direction == SwipeDirection.Up)
         {
-            _playerScript.jump = true;
+            _playerScript._isJumping = true;
         }
 
-        if (_playerScript.isAttacking)
+        if (_playerScript._isAttacking)
         {
-            if (_playerScript.attackTimer > 0)
+            if (_playerScript._attackCooldown > 0)
             {
-                _playerScript.attackTimer -= Time.deltaTime;
+                _playerScript._attackCooldown -= Time.deltaTime;
             }
             else
             {
-                _playerScript.isAttacking = false;
+                _playerScript._isAttacking = false;
             }
         }
 
-        if (_playerScript.isInHitstun)
+        if (_playerScript._isInHitstun)
         {
-            if (_playerScript.hitstunTimer > 0)
+            if (_playerScript._hitstunTimer > 0)
             {
-                _playerScript.hitstunTimer -= Time.deltaTime;
+                _playerScript._hitstunTimer -= Time.deltaTime;
             }
             else
             {
-                _playerScript.isInHitstun = false;
+                _playerScript._isInHitstun = false;
             }
         }
 
-        if (_playerScript.isInvincible)
+        if (_playerScript._isInvincible)
         {
-            if (_playerScript.invincibilityTimer > 0)
+            if (_playerScript._invincibilityTimer > 0)
             {
-                _playerScript.invincibilityTimer -= Time.deltaTime;
+                _playerScript._invincibilityTimer -= Time.deltaTime;
             }
             else
             {
-                _playerScript.isInvincible = false;
+                _playerScript._isInvincible = false;
             }
         }
     }
 
     private void FixedUpdate()
     {
-        if (!_playerScript.isInHitstun)
+        if (!_playerScript._isInHitstun)
         {
-            if (_playerScript.jump)
+            if (_playerScript._isJumping)
             {
-                if (_playerScript.isGrounded)
+                if (_playerScript._isGrounded)
                 {
-                    _playerScript.rb.velocity = new Vector2(_playerScript.rb.velocity.x, _playerScript.jumpForce);
-                    _playerScript.canDoubleJump = true;
+                    _playerScript._rigidBody.velocity = new Vector2(_playerScript._rigidBody.velocity.x,
+                        _playerScript._jumpForce);
+                    _playerScript._canDoubleJump = true;
                 }
                 else
                 {
-                    if (_playerScript.canDoubleJump)
+                    if (_playerScript._canDoubleJump)
                     {
-                        _playerScript.canDoubleJump = false;
-                        _playerScript.rb.velocity = new Vector2(_playerScript.rb.velocity.x, 0);
-                        _playerScript.rb.velocity = new Vector2(_playerScript.rb.velocity.x, _playerScript.jumpForce / 1);
+                        _playerScript._canDoubleJump = false;
+                        _playerScript._rigidBody.velocity = new Vector2(_playerScript._rigidBody.velocity.x, 0);
+                        _playerScript._rigidBody.velocity = new Vector2(_playerScript._rigidBody.velocity.x,
+                            _playerScript._jumpForce / 1);
                     }
                 }
-                _playerScript.dir = SwipeDirection.None;
-                _playerScript.jump = false;
+                _playerScript.Direction = SwipeDirection.None;
+                _playerScript._isJumping = false;
             }
         }
     }
 
     public void ReceiveAction(SwipeDirection direction)
     {
-        _playerScript.dir = direction;
-        if (!_playerScript.isInHitstun)
+        _playerScript.Direction = direction;
+        if (!_playerScript._isInHitstun)
         {
-            if (_playerScript.dir == SwipeDirection.Left)
+            if (_playerScript.Direction == SwipeDirection.Left)
             {
-                _playerScript.rb.velocity = new Vector2(-_playerScript.moveSpeed, _playerScript.rb.velocity.y);
-                if (_playerScript.facingRight)
+                _playerScript._rigidBody.velocity = new Vector2(-_playerScript._moveSpeed,
+                    _playerScript._rigidBody.velocity.y);
+
+                if (_playerScript._facingRight)
                 {
                     Flip();
                 }
             }
-            else if (_playerScript.dir == SwipeDirection.Right)
+            else if (_playerScript.Direction == SwipeDirection.Right)
             {
-                _playerScript.rb.velocity = new Vector2(_playerScript.moveSpeed, _playerScript.rb.velocity.y);
-                if (!_playerScript.facingRight)
+                _playerScript._rigidBody.velocity = new Vector2(_playerScript._moveSpeed, 
+                    _playerScript._rigidBody.velocity.y);
+
+                if (!_playerScript._facingRight)
                 {
                     Flip();
                 }
             }
-            else if (_playerScript.dir == SwipeDirection.Down)
+            else if (_playerScript.Direction == SwipeDirection.Down)
             {
-                _playerScript.rb.velocity = new Vector2(0, -_playerScript.fastFallSpeed);
+                _playerScript._rigidBody.velocity = new Vector2(0, -_playerScript._fastFallSpeed);
             }
         }
     }
@@ -124,7 +130,7 @@ public class PlayerMovementScript : MonoBehaviour
     private void Flip()
     {
         // Switch the way the player is labelled as facing.
-        _playerScript.facingRight = !_playerScript.facingRight;
+        _playerScript._facingRight = !_playerScript._facingRight;
 
         // Multiply the player's x local scale by -1.
         Vector3 theScale = transform.localScale;

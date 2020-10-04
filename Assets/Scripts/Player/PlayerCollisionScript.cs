@@ -17,9 +17,9 @@ public class PlayerCollisionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _playerScript.isGrounded = Physics2D.OverlapCircle(
-            _playerScript.groundCheckPoint.position, _playerScript.groundCheckRadius,
-            _playerScript.whatIsGround);
+        _playerScript._isGrounded = Physics2D.OverlapCircle(
+            _playerScript._groundCheckPoint.position, _playerScript._groundCheckRadius,
+            _playerScript._whatIsGround);
 
     }
 
@@ -29,33 +29,33 @@ public class PlayerCollisionScript : MonoBehaviour
         //kill player
         if (other.gameObject.CompareTag("OOBLeft"))
         {
-            if (!_playerScript.isDead)
+            if (!_playerScript._isDead)
             {
-                _playerScript.isDead = true;
+                _playerScript._isDead = true;
                 _playerScript.OnDeath();
             }
         }
         else if (other.gameObject.CompareTag("OOBRight"))
         {
-            if (!_playerScript.isDead)
+            if (!_playerScript._isDead)
             {
-                _playerScript.isDead = true;
+                _playerScript._isDead = true;
                 _playerScript.OnDeath();
             }
         }
         else if (other.gameObject.CompareTag("OOBTop"))
         {
-            if (!_playerScript.isDead)
+            if (!_playerScript._isDead)
             {
-                _playerScript.isDead = true;
+                _playerScript._isDead = true;
                 _playerScript.OnDeath();
             }
         }
         else if (other.gameObject.CompareTag("OOBBottom"))
         {
-            if (!_playerScript.isDead)
+            if (!_playerScript._isDead)
             {
-                _playerScript.isDead = true;
+                _playerScript._isDead = true;
                 _playerScript.OnDeath();
             }
         }
@@ -65,9 +65,10 @@ public class PlayerCollisionScript : MonoBehaviour
 
     public void Knockback(Vector2 direction, float baseKB, float KBGrowth, float damage)
     {
-        if (!_playerScript.isInvincible)
+        if (!_playerScript._isInvincible)
         {
-            _playerScript.rb.AddForce(direction * (((_playerScript.health / 10) + (_playerScript.health * damage / 20) * KBGrowth) + baseKB), ForceMode2D.Impulse);
+            _playerScript._rigidBody.AddForce(direction * (((_playerScript.Health / 10) + 
+                (_playerScript.Health * damage / 20) * KBGrowth) + baseKB), ForceMode2D.Impulse);
         }
     }
 }

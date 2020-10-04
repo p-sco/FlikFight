@@ -63,12 +63,12 @@ public class PlayerInputScript : MonoBehaviour
             if (t.phase == TouchPhase.Moved)
             {
                 touchDidMove[fingerIndex] = true;
-                if (leftTouch == t.fingerId && _playerScript.player == 1)
+                if (leftTouch == t.fingerId && _playerScript._playerId == 1)
                 {
                     Vector2 offset = touchPos - LeftStartingPoint;
                     DetectSwipe(offset);
                 }
-                if (rightTouch == t.fingerId && _playerScript.player == 2)
+                if (rightTouch == t.fingerId && _playerScript._playerId == 2)
                 {
                     Vector2 offset = touchPos - RightStartingPoint;
                     DetectSwipe(offset);
@@ -80,22 +80,22 @@ public class PlayerInputScript : MonoBehaviour
                 if (tapTime <= tapTimeThreshold && touchDidMove[fingerIndex] == false)
                 {
                     if (t.position.x < Screen.width / 2 && t.position.y < Screen.height / 2
-                        && _playerScript.player == 1)
+                        && _playerScript._playerId == 1)
                     {
                         SendBottomTap();
                     }
                     if (t.position.x > Screen.width / 2 && t.position.y < Screen.height / 2
-                        && _playerScript.player == 2)
+                        && _playerScript._playerId == 2)
                     {
                         SendBottomTap();
                     }
                     if (t.position.x < Screen.width / 2 && t.position.y > Screen.height / 2
-                        && _playerScript.player == 1)
+                        && _playerScript._playerId == 1)
                     {
                         SendTopTap();
                     }
                     if (t.position.x > Screen.width / 2 && t.position.y > Screen.height / 2
-                        && _playerScript.player == 2)
+                        && _playerScript._playerId == 2)
                     {
                         SendTopTap();
                     }
