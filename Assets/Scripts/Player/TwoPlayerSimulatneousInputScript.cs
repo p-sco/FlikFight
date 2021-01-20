@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInputScript : MonoBehaviour
+public class TwoPlayerSimulatneousInputScript : MonoBehaviour
 {
     [SerializeField]
     PlayerController _playerScript;
@@ -111,22 +111,22 @@ public class PlayerInputScript : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y, transform.position.z));
     }
 
-    private void DetectSwipe(Vector2 vectorDirection)
+    private void DetectSwipe(Vector2 direction)
     {
-        if (Mathf.Abs(vectorDirection.y) > Mathf.Abs(vectorDirection.x))
+        if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
         {
-            if (Mathf.Abs(vectorDirection.y) > minDistanceForSwipe)
+            if (Mathf.Abs(direction.y) > minDistanceForSwipe)
             {
-                var swipeDir = vectorDirection.y < 0 ? SwipeDirection.Up : SwipeDirection.Down;
-                SendSwipe(swipeDir, vectorDirection);
+                var swipeDir = direction.y < 0 ? SwipeDirection.Up : SwipeDirection.Down;
+                SendSwipe(swipeDir);
             }
         }
-        else if (Mathf.Abs(vectorDirection.y) < Mathf.Abs(vectorDirection.x))
+        else if (Mathf.Abs(direction.y) < Mathf.Abs(direction.x))
         {
-            if (Mathf.Abs(vectorDirection.x) > minDistanceForSwipe)
+            if (Mathf.Abs(direction.x) > minDistanceForSwipe)
             {
-                var swipeDir = vectorDirection.x < 0 ? SwipeDirection.Right : SwipeDirection.Left;
-                SendSwipe(swipeDir, vectorDirection);
+                var swipeDir = direction.x < 0 ? SwipeDirection.Right : SwipeDirection.Left;
+                SendSwipe(swipeDir);
             }
         }
     }
@@ -141,9 +141,9 @@ public class PlayerInputScript : MonoBehaviour
         _playerScript.SpikeAttack();
     }
 
-    private void SendSwipe(SwipeDirection direction, Vector2 vectorDirection)
+    private void SendSwipe(SwipeDirection direction)
     {
-        _playerScript._movementScript.ReceiveAction(direction, vectorDirection);
+        //_playerScript._movementScript.ReceiveAction(direction);
         
     }
 }

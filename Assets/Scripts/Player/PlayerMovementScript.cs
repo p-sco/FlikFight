@@ -69,7 +69,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!_playerScript._isInHitstun)
+        if (!_playerScript._isInHitstun && !_playerScript._isInHitLag)
         {
             if (_playerScript._isJumping)
             {
@@ -95,10 +95,10 @@ public class PlayerMovementScript : MonoBehaviour
         }
     }
 
-    public void ReceiveAction(SwipeDirection direction)
+    public void ReceiveAction(SwipeDirection direction, Vector2 vectorDirection)
     {
         _playerScript.Direction = direction;
-        if (!_playerScript._isInHitstun)
+        if (!_playerScript._isInHitstun && !_playerScript._isInHitLag)
         {
             if (_playerScript.Direction == SwipeDirection.Left)
             {
@@ -125,6 +125,15 @@ public class PlayerMovementScript : MonoBehaviour
                 _playerScript._rigidBody.velocity = new Vector2(0, -_playerScript._fastFallSpeed);
             }
         }
+        _playerScript._bufferedDirection = vectorDirection;
+        StartCoroutine(DirectionBuffer(vectorDirection));
+    }
+    internal IEnumerator DirectionBuffer(Vector2 vectorDirection) {
+        print("Direction after: " + _playerScript._bufferedDirection);
+        yield return StartCoroutine(Assets.Scripts.Helper.WaitFor.Frames(8));
+        _playerScript._bufferedDirection = Vector2.zero;
+        print("Direction after: " + _playerScript._bufferedDirection);
+
     }
 
     private void Flip()

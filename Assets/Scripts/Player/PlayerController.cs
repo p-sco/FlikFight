@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using TMPro;
-
+using Helper = Assets.Scripts.Helper;
 public class PlayerController : MonoBehaviour
 {
 
@@ -55,17 +55,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     internal LayerMask _whatIsGround;
 
+    
     //state variables
     internal bool _isInvincible;
     internal bool _isDead = false;
-    internal bool _isKnocked;
 
     internal bool _canDoubleJump;
     internal bool _isJumping;
 
     internal bool _isInHitstun;
+    internal bool _isInHitLag;
     internal float _hitstunDuration = 0f; 
+    internal float _hitLagDuration = 0f; 
     internal float _hitstunTimer;
+    internal Vector2 _bufferedDirection;
     internal bool _facingRight;
 
     internal float _attackCooldown;
@@ -102,8 +105,6 @@ public class PlayerController : MonoBehaviour
     {
         get { return CurrentState; }
     }
-
-    //public readonly PlayerRunningState RunningState = new PlayerRunningState();
 
     protected void Awake() {
         
@@ -223,7 +224,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void SpikeAttack() {
-        if (!_isAttacking && !_isInHitstun) {
+        if (!_isAttacking && !_isInHitstun && !_isInHitLag) {
             _isAttacking = true;
             TransitionToState(SpikeAttackState);
             _attackCooldown = _animator.GetCurrentAnimatorStateInfo(0).length;
@@ -231,7 +232,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void SwipeAttack() {
-        if (!_isInHitstun && !_isAttacking) {
+        if (!_isInHitstun && !_isAttacking && !_isInHitLag) {
             _isAttacking = true;
             TransitionToState(ForwarAttackState);
             _attackCooldown = _animator.GetCurrentAnimatorStateInfo(0).length;

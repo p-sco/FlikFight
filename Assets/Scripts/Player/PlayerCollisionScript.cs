@@ -63,12 +63,12 @@ public class PlayerCollisionScript : MonoBehaviour
 
     
 
-    public void Knockback(Vector2 direction, float baseKB, float KBGrowth, float damage)
+    public void Knockback(Vector2 direction, float baseKnockback, float knockbackGrowth, float damage, Vector2 directionalInfluence)
     {
         if (!_playerScript._isInvincible)
         {
             _playerScript._rigidBody.AddForce(direction * (((_playerScript.Health / 10) + 
-                (_playerScript.Health * damage / 20) * KBGrowth) + baseKB), ForceMode2D.Impulse);
+                (_playerScript.Health * damage / 20) * knockbackGrowth) + baseKnockback), ForceMode2D.Impulse);
         }
     }
 }
